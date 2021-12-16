@@ -1,22 +1,16 @@
 import mysql.connector
 from MySQL_cnx import get_cnx
 from datetime import datetime as dt
-# 여러 데이터를 insert
+# 여러 데이터를 delete
 try :
     # DB와 연결
     cnx = get_cnx()
     # 쿼리문을 작성
-
-    current_time = dt.now()
-
-    query='''insert into test
-            (name, created_at)
-            values
-            (%s, %s);  '''
+    query='''delete from test
+                where id = %s;  '''
     # 단일 데이터 튜플은 (요소)가 아닌 (요소,)의 형식으로 작성한다.
     # 여러 데이터를 삽입 할 때에는 리스트를 통해 건네준다.
-    record = [('젤다',current_time),
-            ('그린먼',current_time)]
+    record = [(11,), (13,)]
     
     # 연결로부터 커서를 가져옴
     cursor = cnx.cursor()
