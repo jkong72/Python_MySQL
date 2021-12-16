@@ -1,16 +1,11 @@
 import mysql.connector
+from MySQL_cnx import get_cnx
 from mysql.connector.errors import Error
 import pandas as pd
 
 # DB의 내용을 파이썬으로 가져오기
 try :
-    cnx = mysql.connector.connect(
-        host ='endpoint',
-        database = 'forstreamlit',
-        port =3306,
-        user ='id',
-        password ='pw'
-    )
+    cnx = get_cnx()
 
     # 조건을 지정한 select
     query = '''select * from test
@@ -31,7 +26,7 @@ try :
         print('name =', row[2])
         print('age =', row[3])
 
-except Error as e:
+except mysql.connector.Error as e:
     print('Error while connecting to MySQL\n',e)
 
 finally :

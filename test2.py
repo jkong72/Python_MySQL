@@ -1,15 +1,9 @@
-from logging import ERROR, error
 import mysql.connector
+from MySQL_cnx import get_cnx
 # 데이터를 insert
 try :
     # DB와 연결
-    cnx = mysql.connector.connect(
-        host ='endpoint',
-        database = 'forstreamlit',
-        port =3306,
-        user ='id',
-        password ='pw'
-    )
+    cnx = get_cnx()
     # 자동화를 위해 변수를 이용
     name = '이름'
     age = 20

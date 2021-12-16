@@ -1,16 +1,11 @@
 import mysql.connector
+from MySQL_cnx import get_cnx
 from mysql.connector.errors import Error
 import pandas as pd
 
 # DB의 내용을 딕셔너리로 가져오기
 try :
-    cnx = mysql.connector.connect(
-        host ='endpoint',
-        database = 'forstreamlit',
-        port =3306,
-        user ='id',
-        password ='pw'
-    )
+    cnx = get_cnx()
     query = '''select * from test;'''
 
     # select 결과를 딕셔너리로
@@ -28,7 +23,7 @@ try :
         print('age =', row['age'])
         print('-'*12)
 
-except Error as e:
+except mysql.connector.Error as e:
     print('Error while connecting to MySQL\n',e)
 
 finally :
